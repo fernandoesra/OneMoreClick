@@ -1,0 +1,147 @@
+package com.example.onemoreclick;
+
+import static java.lang.Thread.sleep;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.graphics.Color;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DecimalFormat;
+
+public class click_screen extends AppCompatActivity {
+
+    /**
+     * Android variables for objects
+     */
+    TextView actualPointsDisplay;
+    TextView maxPointsDisplay;
+    Button moreClickBtn;
+    Button savePointsBtn;
+    /**
+     * Variables of the game
+     */
+    int actualPoints;
+    int maxPoints;
+    double luck;
+    Toast wipeText;
+
+    protected void test1(View view) {
+        actualPointsDisplay.setText(String.valueOf(aleatoric()));
+    }
+
+    /**
+     * Method to create all the items on the ClickScreen and initialize the variables
+     *
+     * @param savedInstanceState
+     */
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_click_screen);
+
+        actualPointsDisplay = (TextView) findViewById(R.id.actualPointsDisplay);
+        maxPointsDisplay = (TextView) findViewById(R.id.maxPointsDisplay);
+        moreClickBtn = (Button) findViewById(R.id.moreClickBtn);
+        savePointsBtn = (Button) findViewById(R.id.savePointsBtn);
+
+        actualPoints = 0;
+        actualPointsDisplay.setText("Actual points: 0");
+        maxPoints = 0;
+        maxPointsDisplay.setText("Max points: 0");
+        luck = 100.00d;
+        wipeText = Toast.makeText(getApplicationContext(), "BETTER LUCK NEXT TIME LOSER", Toast.LENGTH_LONG);
+
+        if (maxPoints == 0) {
+            deactivateBtn(savePointsBtn);
+        }
+
+        moreClickBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                moreClickBtnOnClick(view);
+            }
+        });
+        savePointsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                savePointsBtnOnClick(view);
+            }
+        });
+
+        /**
+         * Seguir aquí
+         */
+
+
+    }
+
+    public void moreClickBtnOnClick(View view) {
+        decreaseLuck();
+
+        int testLuck = (int) aleatoric(0, 100);
+
+        if (testLuck > luck) {
+            wipeText.show();
+            resetPoints();
+        } else {
+            actualPoints += (int) aleatoric(1, 100);
+            actualPointsDisplay.setText("Actual points: " + String.valueOf(actualPoints));
+
+            if (maxPoints < actualPoints) {
+                activateBtn(savePointsBtn);
+            }
+
+        }
+
+    }
+
+    public void savePointsBtnOnClick(View view) {
+        if (actualPoints > maxPoints) {
+            maxPoints = actualPoints;
+            maxPointsDisplay.setText(String.valueOf("Max points: " + String.valueOf(maxPoints)));
+            resetPoints();
+        }
+    }
+
+    public void resetPoints() {
+        actualPointsDisplay.setText("Actual points: 0");
+        actualPoints = 0;
+        luck = 100;
+        deactivateBtn(savePointsBtn);
+    }
+
+
+    public void activateBtn(Button btn) {
+        btn.setEnabled(true);
+        btn.setBackgroundColor(Color.parseColor("#1A8F1C"));
+    }
+
+    public void deactivateBtn(Button btn) {
+        btn.setEnabled(false);
+        btn.setBackgroundColor(Color.parseColor("#9F2858"));
+        btn.setTextColor(Color.parseColor("#FFFFFF"));
+    }
+
+    public double decreaseLuck() {
+        luck -= aleatoric(0.05, 1);
+        return luck;
+    }
+
+    public double aleatoric() {
+        double number = Math.round((Math.random() * 100) * 100.0) / 100.0;
+        System.out.println(number);
+        return number;
+    }
+
+    public double aleatoric(double min, double max) {
+        double number = Math.round((Math.random() * (max - min) + min) * 100.0) / 100.0;
+        System.out.println(number);
+        return number;
+    }
+
+}

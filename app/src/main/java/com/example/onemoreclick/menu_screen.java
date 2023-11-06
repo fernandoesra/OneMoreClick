@@ -13,6 +13,7 @@ public class menu_screen extends AppCompatActivity {
     Button newGameBtn;
     ImageButton closeApp;
     ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +24,8 @@ public class menu_screen extends AppCompatActivity {
         closeApp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                System.exit(0);
+                finish();
+                //System.exit(0);
             }
         });
         newGameBtn.setOnClickListener(new View.OnClickListener() {

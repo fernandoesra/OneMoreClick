@@ -21,6 +21,7 @@ public class click_screen extends AppCompatActivity {
      */
     double doublePointsPercentage = 1.0d;
     double resetLuckPercentage = 0.05;
+    double decreaseLuckPercentage = 10.0d;
 
 
     /**
@@ -100,10 +101,12 @@ public class click_screen extends AppCompatActivity {
     }
 
     public void moreClickBtnOnClick(View view) {
-        decreaseLuck();
+        if (aleatoric() > decreaseLuckPercentage) {
+            decreaseLuck();
+        }
         int testLuck = (int) aleatoric(0, 100);
-        // System.out.println("testLuck: " + testLuck);
-        if (testLuck > luck) {
+        System.out.println("Test luck: " + testLuck);
+        if (testLuck > luck && actualPoints != 0) {
             wipeText.show();
             resetPoints();
         } else {
@@ -119,7 +122,7 @@ public class click_screen extends AppCompatActivity {
                 activateBtn(savePointsBtn);
             }
             aleatoricResetLuck();
-            // System.out.println("Actual luck: " + luck);
+            System.out.println("Actual luck: " + luck);
         }
     }
 

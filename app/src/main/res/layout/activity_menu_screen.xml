@@ -32,6 +32,6 @@
         app:layout_constraintVertical_bias="0.024"
         app:srcCompat="@drawable/closebtn"
         android:scaleType="centerCrop"
-        android:background="#F0F0F0"
+        android:background="#7FD3DC"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

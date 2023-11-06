@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -16,12 +17,20 @@ import java.text.DecimalFormat;
 public class click_screen extends AppCompatActivity {
 
     /**
+     * Variables to control percentages
+     */
+    double doublePointsPercentage = 1.0d;
+    double resetLuckPercentage = 0.05;
+
+
+    /**
      * Android variables for objects
      */
     TextView actualPointsDisplay;
     TextView maxPointsDisplay;
     Button moreClickBtn;
     Button savePointsBtn;
+    ImageButton backBtn;
     /**
      * Variables of the game
      */
@@ -29,6 +38,8 @@ public class click_screen extends AppCompatActivity {
     int maxPoints;
     double luck;
     Toast wipeText;
+    Toast resetLuckToast;
+    Toast doublePoints;
 
     protected void test1(View view) {
         actualPointsDisplay.setText(String.valueOf(aleatoric()));
@@ -48,13 +59,15 @@ public class click_screen extends AppCompatActivity {
         maxPointsDisplay = (TextView) findViewById(R.id.maxPointsDisplay);
         moreClickBtn = (Button) findViewById(R.id.moreClickBtn);
         savePointsBtn = (Button) findViewById(R.id.savePointsBtn);
+        backBtn = (ImageButton) findViewById(R.id.backClickBtn);
 
         actualPoints = 0;
         actualPointsDisplay.setText("Actual points: 0");
         maxPoints = 0;
         maxPointsDisplay.setText("Max points: 0");
-        luck = 100.00d;
         wipeText = Toast.makeText(getApplicationContext(), "BETTER LUCK NEXT TIME LOSER", Toast.LENGTH_LONG);
+        resetLuckToast = Toast.makeText(getApplicationContext(), "YOUR LUCK HAS BEEN RESTORED", Toast.LENGTH_LONG);
+        doublePoints = Toast.makeText(getApplicationContext(), "DOUBLE POINTS !!!", Toast.LENGTH_LONG);
 
         if (maxPoints == 0) {
             deactivateBtn(savePointsBtn);
@@ -72,6 +85,12 @@ public class click_screen extends AppCompatActivity {
                 savePointsBtnOnClick(view);
             }
         });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         /**
          * Seguir aquí
@@ -82,20 +101,33 @@ public class click_screen extends AppCompatActivity {
 
     public void moreClickBtnOnClick(View view) {
         decreaseLuck();
-
         int testLuck = (int) aleatoric(0, 100);
-
+        // System.out.println("testLuck: " + testLuck);
         if (testLuck > luck) {
             wipeText.show();
             resetPoints();
         } else {
+            if (actualPoints > maxPoints && maxPoints != 0) {
+                if (aleatoric() < doublePointsPercentage) {
+                    actualPoints *= 2;
+                    doublePoints.show();
+                }
+            }
             actualPoints += (int) aleatoric(1, 100);
             actualPointsDisplay.setText("Actual points: " + String.valueOf(actualPoints));
-
             if (maxPoints < actualPoints) {
                 activateBtn(savePointsBtn);
             }
+            aleatoricResetLuck();
+            // System.out.println("Actual luck: " + luck);
+        }
+    }
 
+    public void aleatoricResetLuck() {
+
+        if (aleatoric() < resetLuckPercentage) {
+            resetLuckToast.show();
+            luck = 100;
         }
 
     }
@@ -134,14 +166,17 @@ public class click_screen extends AppCompatActivity {
 
     public double aleatoric() {
         double number = Math.round((Math.random() * 100) * 100.0) / 100.0;
-        System.out.println(number);
         return number;
     }
 
     public double aleatoric(double min, double max) {
         double number = Math.round((Math.random() * (max - min) + min) * 100.0) / 100.0;
-        System.out.println(number);
         return number;
+    }
+
+    @Override
+    public void onBackPressed() {
+        // No action
     }
 
 }

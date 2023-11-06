@@ -29,6 +29,8 @@ public class click_screen extends AppCompatActivity {
     int maxPoints;
     double luck;
     Toast wipeText;
+    Toast resetLuckToast;
+    Toast doublePoints;
 
     protected void test1(View view) {
         actualPointsDisplay.setText(String.valueOf(aleatoric()));
@@ -55,6 +57,8 @@ public class click_screen extends AppCompatActivity {
         maxPointsDisplay.setText("Max points: 0");
         luck = 100.00d;
         wipeText = Toast.makeText(getApplicationContext(), "BETTER LUCK NEXT TIME LOSER", Toast.LENGTH_LONG);
+        resetLuckToast = Toast.makeText(getApplicationContext(), "YOUR LUCK HAS BEEN RESTORED", Toast.LENGTH_LONG);
+        doublePoints = Toast.makeText(getApplicationContext(), "DOUBLE POINTS !!!", Toast.LENGTH_LONG);
 
         if (maxPoints == 0) {
             deactivateBtn(savePointsBtn);
@@ -89,13 +93,33 @@ public class click_screen extends AppCompatActivity {
             wipeText.show();
             resetPoints();
         } else {
-            actualPoints += (int) aleatoric(1, 100);
+
+            if (actualPoints > maxPoints && maxPoints != 0) {
+                if (aleatoric() < 1) {
+                    actualPoints *= 2;
+                    doublePoints.show();
+                }
+            } else {
+                actualPoints += (int) aleatoric(1, 100);
+            }
+
             actualPointsDisplay.setText("Actual points: " + String.valueOf(actualPoints));
 
             if (maxPoints < actualPoints) {
                 activateBtn(savePointsBtn);
             }
 
+            aleatoricResetLuck();
+
+        }
+
+    }
+
+    public void aleatoricResetLuck() {
+
+        if (aleatoric() < 0.05) {
+            resetLuckToast.show();
+            luck = 100;
         }
 
     }

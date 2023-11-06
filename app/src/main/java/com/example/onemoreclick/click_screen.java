@@ -16,6 +16,13 @@ import java.text.DecimalFormat;
 public class click_screen extends AppCompatActivity {
 
     /**
+     * Variables to control percentages
+     */
+    double doublePointsPercentage = 1.0d;
+    double resetLuckPercentage = 0.05;
+
+
+    /**
      * Android variables for objects
      */
     TextView actualPointsDisplay;
@@ -55,7 +62,6 @@ public class click_screen extends AppCompatActivity {
         actualPointsDisplay.setText("Actual points: 0");
         maxPoints = 0;
         maxPointsDisplay.setText("Max points: 0");
-        luck = 100.00d;
         wipeText = Toast.makeText(getApplicationContext(), "BETTER LUCK NEXT TIME LOSER", Toast.LENGTH_LONG);
         resetLuckToast = Toast.makeText(getApplicationContext(), "YOUR LUCK HAS BEEN RESTORED", Toast.LENGTH_LONG);
         doublePoints = Toast.makeText(getApplicationContext(), "DOUBLE POINTS !!!", Toast.LENGTH_LONG);
@@ -95,14 +101,13 @@ public class click_screen extends AppCompatActivity {
         } else {
 
             if (actualPoints > maxPoints && maxPoints != 0) {
-                if (aleatoric() < 1) {
+                if (aleatoric() < doublePointsPercentage) {
                     actualPoints *= 2;
                     doublePoints.show();
                 }
-            } else {
-                actualPoints += (int) aleatoric(1, 100);
             }
 
+            actualPoints += (int) aleatoric(1, 100);
             actualPointsDisplay.setText("Actual points: " + String.valueOf(actualPoints));
 
             if (maxPoints < actualPoints) {
@@ -117,7 +122,7 @@ public class click_screen extends AppCompatActivity {
 
     public void aleatoricResetLuck() {
 
-        if (aleatoric() < 0.05) {
+        if (aleatoric() < resetLuckPercentage) {
             resetLuckToast.show();
             luck = 100;
         }

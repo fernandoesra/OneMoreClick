@@ -8,16 +8,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class menu_screen extends AppCompatActivity {
 
@@ -25,14 +18,14 @@ public class menu_screen extends AppCompatActivity {
     Button howToPlayBtn;
     Button resetMaxPointsBtn;
     ImageButton closeApp;
-    String pointsFile;
+    String pointsFileName;
     ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_screen);
-        pointsFile = "maxpoints.txt";
+        pointsFileName = "maxpoints.txt";
         newGameBtn = (Button) findViewById(R.id.newGameBtn);
         closeApp = (ImageButton) findViewById(R.id.closeAppBtn);
         howToPlayBtn = (Button) findViewById(R.id.howPlayBtn);
@@ -66,7 +59,7 @@ public class menu_screen extends AppCompatActivity {
 
     public void resetMax() {
         Context context = getApplicationContext();
-        File searchFile = new File(context.getFilesDir(), pointsFile);
+        File searchFile = new File(context.getFilesDir(), pointsFileName);
         if (searchFile.exists()) {
             searchFile.delete();
         }
@@ -74,9 +67,9 @@ public class menu_screen extends AppCompatActivity {
 
     public void clickNewGame() throws Exception{
         Context context = getApplicationContext();
-        File searchFile = new File(context.getFilesDir(), pointsFile);
+        File searchFile = new File(context.getFilesDir(), pointsFileName);
         if (!searchFile.exists()) {
-            FileOutputStream newFile = openFileOutput(pointsFile, Context.MODE_PRIVATE);
+            FileOutputStream newFile = openFileOutput(pointsFileName, Context.MODE_PRIVATE);
             newFile.write("0".getBytes());
         } else {
             System.out.println("File already exists");

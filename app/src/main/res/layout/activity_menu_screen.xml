@@ -11,6 +11,7 @@
         android:id="@+id/newGameBtn"
         android:layout_width="200dp"
         android:layout_height="67dp"
+        android:backgroundTint="#4BA326"
         android:text="NEW GAME"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +19,35 @@
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.442" />
+        app:layout_constraintVertical_bias="0.350" />
+
+    <Button
+        android:id="@+id/howPlayBtn"
+        android:layout_width="200dp"
+        android:layout_height="67dp"
+        android:backgroundTint="#2C249A"
+        android:text="HOW TO PLAY"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newGameBtn"
+        app:layout_constraintVertical_bias="0.075" />
+
+    <Button
+        android:id="@+id/resetPointsBtn"
+        android:layout_width="200dp"
+        android:layout_height="67dp"
+        android:backgroundTint="#C51A1A"
+        android:text="RESET MAX POINTS"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/howPlayBtn"
+        app:layout_constraintVertical_bias="0.085" />
 
     <ImageButton
         android:id="@+id/closeAppBtn"

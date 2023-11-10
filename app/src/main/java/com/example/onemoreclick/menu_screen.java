@@ -2,7 +2,9 @@ package com.example.onemoreclick;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -58,14 +60,33 @@ public class menu_screen extends AppCompatActivity {
     }
 
     public void resetMax() {
-        Context context = getApplicationContext();
-        File searchFile = new File(context.getFilesDir(), pointsFileName);
-        if (searchFile.exists()) {
-            searchFile.delete();
-        }
+        showResetDialog();
     }
 
-    public void clickNewGame() throws Exception{
+    public void showResetDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("DO YOU WANT TO RESET YOUR MAXIMUM POINTS?");
+        builder.setNegativeButton("CANCEL", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        builder.setPositiveButton("RESET POINTS", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Context context = getApplicationContext();
+                File searchFile = new File(context.getFilesDir(), pointsFileName);
+                if (searchFile.exists()) {
+                    searchFile.delete();
+                }
+            }
+        });
+        builder.setCancelable(false);
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    public void clickNewGame() throws Exception {
         Context context = getApplicationContext();
         File searchFile = new File(context.getFilesDir(), pointsFileName);
         if (!searchFile.exists()) {

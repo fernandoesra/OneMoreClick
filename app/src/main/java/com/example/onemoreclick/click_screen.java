@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -12,6 +13,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class click_screen extends AppCompatActivity {
 
@@ -38,6 +42,8 @@ public class click_screen extends AppCompatActivity {
     int maxPoints;
     double luck;
     String pointsFileName;
+    private MediaPlayer mediaPlayer;
+    private List<Integer> soundList;
 
     protected void test1(View view) {
         actualPointsDisplay.setText(String.valueOf(aleatoric()));
@@ -88,10 +94,38 @@ public class click_screen extends AppCompatActivity {
             }
         });
 
+        soundList = new ArrayList<>();
+        soundList.add(R.raw.clickbtn1);
+        soundList.add(R.raw.clickbtn2);
+        soundList.add(R.raw.clickbtn3);
+        soundList.add(R.raw.clickbtn4);
+        soundList.add(R.raw.clickbtn5);
+        soundList.add(R.raw.clickbtn6);
+        mediaPlayer = new MediaPlayer();
+
         /**
          * MORE:
          */
 
+    }
+
+    public void playRandomClickSound() {
+        int randomIndex = new Random().nextInt(soundList.size());
+        int soundResourceId = soundList.get(randomIndex);
+        if (mediaPlayer.isPlaying()) {
+            mediaPlayer.stop();
+            mediaPlayer.reset();
+        }
+        mediaPlayer = MediaPlayer.create(this, soundResourceId);
+        mediaPlayer.start();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+        }
+        super.onDestroy();
     }
 
     public int readMaxPointsFile(String pointsFilePath) {
@@ -155,6 +189,7 @@ public class click_screen extends AppCompatActivity {
     }
 
     public void moreClickBtnOnClick(View view) {
+        playRandomClickSound();
         if (aleatoric() > decreaseLuckPercentage) {
             decreaseLuck();
         }

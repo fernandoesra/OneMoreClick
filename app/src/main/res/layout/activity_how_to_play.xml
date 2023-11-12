@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1E8F8"
+    tools:context=".how_to_play">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Agrega aquí tus elementos, vistas, botones, texto, etc. -->
+
+
+            <ImageButton
+                android:id="@+id/backFromHowToPlay"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_margin="8dp"
+                android:background="#F1E8F8"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/backbtnf" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/img1view"
+                    android:layout_width="217dp"
+                    android:layout_height="125dp"
+                    android:layout_margin="8dp"
+                    android:background="#F1E8F8"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/img1" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@id/img1view"
+                    android:padding="8dp"
+                    android:text="The objective of the game is to get as many points as possible!"
+                    android:textSize="18sp"
+
+                    />
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="16dp"
+                android:text="Contenido largo..."
+                android:textSize="20sp" />
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

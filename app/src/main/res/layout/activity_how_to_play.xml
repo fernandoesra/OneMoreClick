@@ -16,8 +16,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- Agrega aquí tus elementos, vistas, botones, texto, etc. -->
-
+            <!-- Scroll items here -->
 
             <ImageButton
                 android:id="@+id/backFromHowToPlay"
@@ -39,10 +38,10 @@
                     android:layout_margin="8dp"
                     android:background="#F1E8F8"
                     android:scaleType="centerCrop"
-                    app:srcCompat="@drawable/img1" />
+                    app:srcCompat="@drawable/howtoplay1" />
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/textHowToPlay1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentTop="true"
@@ -50,18 +49,116 @@
                     android:layout_toRightOf="@id/img1view"
                     android:padding="8dp"
                     android:text="The objective of the game is to get as many points as possible!"
-                    android:textSize="18sp"
-
-                    />
+                    android:textSize="18sp" />
             </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Contenido largo..."
-                android:textSize="20sp" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="254dp">
 
+                <TextView
+                    android:id="@+id/textHowToPlay2"
+                    android:layout_width="187dp"
+                    android:layout_height="148dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="63dp"
+                    android:layout_marginBottom="72dp"
+                    android:padding="8dp"
+                    android:text="Each time you press the button a random amount from 1 to 100 will be added to your actual points."
+                    android:textSize="18sp" />
+
+                <ImageView
+                    android:id="@+id/img2view"
+                    android:layout_width="204dp"
+                    android:layout_height="192dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="42dp"
+                    android:layout_marginEnd="12dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_toRightOf="@id/textHowToPlay2"
+                    android:background="#F1E8F8"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/howtoplay2" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="258dp">
+
+                <ImageView
+                    android:id="@+id/img3view"
+                    android:layout_width="217dp"
+                    android:layout_height="240dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:background="#F1E8F8"
+                    android:scaleType="centerCrop"
+                    app:srcCompat="@drawable/howtoplay3" />
+
+                <TextView
+                    android:id="@+id/textHowToPlay3"
+                    android:layout_width="165dp"
+                    android:layout_height="204dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="15dp"
+                    android:layout_toRightOf="@id/img3view"
+                    android:padding="8dp"
+                    android:text="If you have more actual points than maximum you can save your points with save actual points. This will set a new points record!"
+                    android:textSize="18sp" />
+
+            </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/img4view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/howtoplay4" />
+
+            <TextView
+                android:id="@+id/textHowToPlay4"
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:padding="8dp"
+                android:text="But beware! Every time you press the button there is a chance that your current points will be lost. The more you press the button, the more likely you are to lose points!!!"
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/img5view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/howtoplay5" />
+
+            <TextView
+                android:id="@+id/textHowToPlay5"
+                android:layout_width="match_parent"
+                android:layout_height="122dp"
+                android:padding="8dp"
+                android:text="It's not all bad news. Whenever you press the button while your actual points are greater than your maximum points there is an increasing chance that your actual points will be doubled."
+                android:textSize="18sp" />
+
+            <ImageView
+                android:id="@+id/img6view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/howtoplay6" />
+
+            <TextView
+                android:id="@+id/textHowToPlay6"
+                android:layout_width="match_parent"
+                android:layout_height="127dp"
+                android:padding="8dp"
+                android:text="And from time to time, your luck may be restored so that your points are less likely to disappear when you press the button!"
+                android:textSize="18sp" />
+
+            <!-- End scroll items -->
 
         </LinearLayout>
     </ScrollView>

@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class menu_screen extends AppCompatActivity {
 
-    String actualVersionSet = "Version 0.1";
+    String actualVersionSet = "Version 1.0";
 
     Button newGameBtn;
     Button howToPlayBtn;

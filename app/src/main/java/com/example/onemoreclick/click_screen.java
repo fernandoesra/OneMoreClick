@@ -1,6 +1,7 @@
 package com.example.onemoreclick;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
@@ -193,7 +195,16 @@ public class click_screen extends AppCompatActivity {
         if (aleatoric() > decreaseLuckPercentage) {
             decreaseLuck();
         }
-        int testLuck = (int) aleatoric(0, 100);
+        int testLuck = 0;
+        if (actualPoints <= maxPoints) {
+            if (aleatoric(0,100) < 20) {
+                testLuck = (int) aleatoric(0, 50);
+            } else {
+                testLuck = (int) aleatoric(0, 75);
+            }
+        } else {
+            testLuck = (int) aleatoric(0, 100);
+        }
         System.out.println("-------------------------------------------------------------");
         System.out.println("Test luck: " + testLuck);
         if (testLuck > luck && actualPoints != 0) {
